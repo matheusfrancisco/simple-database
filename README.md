@@ -19,8 +19,9 @@ Let's try to write it from scratch
 - [x] Code Generator 
 - [x] Virtual Machine and First Memory
 - [x] Disk Storage with pages
-- [ ] BTree structure
-- [ ] Search
+- [x] BTree structure
+- [ ] splite page
+- [ ] binary search
 
 ## Run
 ```bash
@@ -90,6 +91,11 @@ statements are like:
 
 insert 1 chico chico@matheusfrancsico.com.br
 
+
+# Disk 
+
+Read about the formats [format](./notes/formats.md)
+!(disk-leaf-node-format)[./leaf-node-format.png]
 
 
 

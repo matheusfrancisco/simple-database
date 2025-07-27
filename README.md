@@ -13,6 +13,16 @@ Better "HOW DOES A DATABASE WORKKKKKKKKKS?"
 Let's try to write it from scratch
 
 
+## Todo
+- [x] REPL
+- [x] Tokenizer and Parser
+- [x] Code Generator 
+- [x] Virtual Machine and First Memory
+- [x] Disk Storage with pages
+- [ ] BTree structure
+- [ ] Search
+
+
 ## Steps
 
 Tokenizer -> Parser -> Code Generator -> Virtual Machine -> BTree -> Pager -> OS interface.

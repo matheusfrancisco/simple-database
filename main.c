@@ -59,21 +59,77 @@ typedef enum {
 } PrepareResult;
 
 MetaCommandResult do_meta_command(InputBuffer *input_buffer) {
-
-  return META_COMMAND_UNRECOGNIZED_COMMAND;
+  if(strcmp(input_buffer->buffer, ".exit") == 0) {
+    close_input(input_buffer);
+    exit(EXIT_SUCCESS);
+  } else {
+    return META_COMMAND_UNRECOGNIZED_COMMAND;
+  }
 };
 
-int main() {
+typedef enum {
+  STATEMENT_INSERT,
+  STATEMENT_SELECT 
+} StatementType;
+
+typedef struct {
+  StatementType type;
+} Statement;
+
+
+PrepareResult prepare_statement(InputBuffer* input_buffer,
+                                Statement* statement) {
+  // compare a sequence
+  if(strncmp(input_buffer->buffer, "insert", 6) == 0) {
+    statement->type = STATEMENT_INSERT;
+    return PREPARE_SUCCESS;
+  }
+  if (strcmp(input_buffer->buffer, "select") == 0) {
+    statement->type = STATEMENT_SELECT;
+    return PREPARE_SUCCESS;
+  }
+
+  return PREPARE_UNRECOGNIZED_STATEMENT;
+}
+
+void execute(Statement *statement) {
+  switch(statement->type) {
+    case STATEMENT_INSERT:
+      printf("This is where we would do an insert.\n");
+      break;
+    case STATEMENT_SELECT:
+      printf("This is where we would do a select.\n");
+      break;
+  }
+}
+
+
+int main(int argc, char* argv[]) {
   InputBuffer* ip_bf = new_input_bf();
   while(1) {
     prompt();
     read_input(ip_bf);
-    if(strcmp(ip_bf->buffer, ".exit") == 0) {
-      close_input(ip_bf);
-      exit(EXIT_SUCCESS);
-    } else {
-      printf("Unrecognized command %s\n", ip_bf->buffer);
+    if (strncmp(ip_bf->buffer, ".", 1) == 0) {
+      switch(do_meta_command(ip_bf)) {
+        case(META_COMMAND_SUCCESS):
+          continue;
+        case(META_COMMAND_UNRECOGNIZED_COMMAND):
+          printf("Unrecognized command '%s'\n", ip_bf->buffer);
+          continue; // skip empty input
+      }
     }
+
+    Statement statement;
+    switch(prepare_statement(ip_bf, &statement)) {
+      case (PREPARE_SUCCESS):
+        break;
+      case (PREPARE_UNRECOGNIZED_STATEMENT):
+        printf("Unrecognized keyword at start of '%s'\n", ip_bf->buffer);
+        continue; // skip empty input
+    }
+    execute(&statement);
+    printf("Executed.\n");
+
   }
 
 }

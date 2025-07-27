@@ -52,3 +52,24 @@ A journey of a thousand miles begins with a single step,
 so let’s start with something a little more straightforward:
 the REPL.
 
+## Notes on In Memory Append Only, Single Table DATABASE.
+
+limitations:
+- support only inserting a new row and printing all rows
+- reside only in memory( no persistent disk UNTIL now)
+- support a single hadrd-coded table
+
+
+column type:
+id       integer
+username varchar(32)
+email    varchar(255)
+
+statements are like:
+
+insert 1 chico chico@matheusfrancsico.com.br
+
+
+
+
+

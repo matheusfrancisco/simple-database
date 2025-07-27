@@ -22,6 +22,17 @@ Let's try to write it from scratch
 - [ ] BTree structure
 - [ ] Search
 
+## Run
+```bash
+gcc main.c -o db
+./db mydb.db
+
+sqlite > insert 1 chico chico@email.com
+sqlite > select
+sqlite > .exit
+```
+
+![test](./img.jpeg)
 
 ## Steps
 

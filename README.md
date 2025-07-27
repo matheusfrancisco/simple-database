@@ -95,7 +95,7 @@ insert 1 chico chico@matheusfrancsico.com.br
 # Disk 
 
 Read about the formats [format](./notes/formats.md)
-!(disk-leaf-node-format)[./leaf-node-format.png]
+![disk-leaf-node-format](./leaf-node-format.png)
 
 
 

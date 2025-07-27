@@ -20,7 +20,7 @@ Let's try to write it from scratch
 - [x] Virtual Machine and First Memory
 - [x] Disk Storage with pages
 - [x] BTree structure
-- [ ] splite page
+- [ ] split btree and rebalance the nodes
 - [ ] binary search
 
 ## Run
